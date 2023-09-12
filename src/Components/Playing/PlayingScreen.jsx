@@ -14,7 +14,8 @@ export const PlayingScreen = ({inputNumber, highScore, setHighScore, setGameScre
     const numberObject = {
       posX : Math.floor((Math.random()*(window.innerWidth - 100)) + 50),
       posY : Math.floor((Math.random()*(window.innerHeight - 150)) + 100),
-      value : index,
+      //indexing is zero based
+      value : index + 1,
       color : `rgb(${rgbGenerator()}, ${rgbGenerator()}, ${rgbGenerator()})`
     }
     return numberObject;
@@ -32,7 +33,9 @@ export const PlayingScreen = ({inputNumber, highScore, setHighScore, setGameScre
     //    0        =   0
     let nextIndex = lastIndex;
 
-    while(numsArray.length < 10 && nextIndex <= inputNumber) {
+    //while there aren't 10 numbers on the screen AND the next number is 
+          // less than equal to how many numbers user selected (zero indexing)
+    while(numsArray.length < 10 && nextIndex <= inputNumber - 1) {
       let number = posnGenerator(nextIndex);
 
       //keep rerolling positions until nothing collides
